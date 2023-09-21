@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <script>
         function logEvent(name, params) {
             if (!name) {
@@ -30,6 +31,7 @@
         function sendTestEvent() {
             console.log("send event")
             logEvent("name", {
+                'type': 'custom.web-click-event',
                 'test-key-1': 'test-value-1',
                 'test-key-2': 'test-value-2'
             } )
