@@ -4,7 +4,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <script>
-        function logEvent(name, params) {
+        function trackEvent(parameters) {
             if (!name) {
                 return;
             }
@@ -14,23 +14,21 @@
                 window.AnalyticsWebInterface.logEvent(name, JSON.stringify(params));
             } else if (window.webkit
                 && window.webkit.messageHandlers
-                && window.webkit.messageHandlers.firebase) {
+                && window.webkit.messageHandlers.nlog) {
                 // Call iOS interface
                 var message = {
-                    command: 'logEvent',
-                    name: name,
+                    command: 'trackEvent',
                     parameters: params
                 };
-                window.webkit.messageHandlers.firebase.postMessage(message);
+                window.webkit.messageHandlers.nlog.postMessage(message);
             } else {
-                // No Android or iOS interface found
-                console.log("No native APIs found.");
+                console.log("Cannot find native API.");
             }
         }
 
         function sendTestEvent() {
             console.log("send event")
-            logEvent("name", {
+            trackEvent({
                 'type': 'custom.web-click-event',
                 'test-key-1': 'test-value-1',
                 'test-key-2': 'test-value-2'
