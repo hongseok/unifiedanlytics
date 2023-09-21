@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>
+        function logEvent(name, params) {
+            if (!name) {
+                return;
+            }
+
+            if (window.AnalyticsWebInterface) {
+                // Call Android interface
+                window.AnalyticsWebInterface.logEvent(name, JSON.stringify(params));
+            } else if (window.webkit
+                && window.webkit.messageHandlers
+                && window.webkit.messageHandlers.firebase) {
+                // Call iOS interface
+                var message = {
+                    command: 'logEvent',
+                    name: name,
+                    parameters: params
+                };
+                window.webkit.messageHandlers.firebase.postMessage(message);
+            } else {
+                // No Android or iOS interface found
+                console.log("No native APIs found.");
+            }
+        }
+
+        function sendTestEvent() {
+            console.log("send event")
+            logEvent("name", {
+                'test-key-1': 'test-value-1',
+                'test-key-2': 'test-value-2'
+            } )
+        }
+    </script>
+</head>
+
+<body>
+    <input type="button" id="hw" value="Send Event" onClick = "sendTestEvent()"  />
+</body>
+
+</html>
