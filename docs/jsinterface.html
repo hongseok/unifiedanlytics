@@ -5,17 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <script>
         function trackEvent(parameters) {
-            if (!name) {
-                return;
-            }
-
             if (window.AnalyticsWebInterface) {
-                // Call Android interface
+                // Android interface
                 window.AnalyticsWebInterface.logEvent(name, JSON.stringify(params));
             } else if (window.webkit
                 && window.webkit.messageHandlers
                 && window.webkit.messageHandlers.nlog) {
-                // Call iOS interface
+                // iOS interface
                 var message = {
                     command: 'trackEvent',
                     parameters: params
