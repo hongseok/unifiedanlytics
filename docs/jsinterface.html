@@ -7,7 +7,7 @@
         function trackEvent(parameters) {
             if (window.NlogAppInterface) {
                 // Android interface
-                window.NlogAppInterface.logEvent(name, JSON.stringify(parameters));
+                window.NlogAppInterface.trackEvent(JSON.stringify(parameters));
             } else if (window.webkit
                 && window.webkit.messageHandlers
                 && window.webkit.messageHandlers.nlog) {
