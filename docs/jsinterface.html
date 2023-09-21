@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <script>
         function trackEvent(parameters) {
-            if (window.AnalyticsWebInterface) {
+            if (window.NlogAppInterface) {
                 // Android interface
-                window.AnalyticsWebInterface.logEvent(name, JSON.stringify(params));
+                window.NlogAppInterface.logEvent(name, JSON.stringify(parameters));
             } else if (window.webkit
                 && window.webkit.messageHandlers
                 && window.webkit.messageHandlers.nlog) {
