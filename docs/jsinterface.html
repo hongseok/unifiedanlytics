@@ -14,7 +14,7 @@
                 // iOS interface
                 var message = {
                     command: 'trackEvent',
-                    parameters: params
+                    parameters: parameters
                 };
                 window.webkit.messageHandlers.nlog.postMessage(message);
             } else {
@@ -25,10 +25,10 @@
         function sendTestEvent() {
             console.log("send event")
             trackEvent({
-                'type': 'custom.web-click-event',
-                'test-key-1': 'test-value-1',
-                'test-key-2': 'test-value-2'
-            } )
+                'type': 'custom.web_click_event',
+                'event_param_key': 'event param value',
+                'current_timestampe': Date.now()
+            })
         }
     </script>
 </head>
