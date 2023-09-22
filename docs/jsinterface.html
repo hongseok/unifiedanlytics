@@ -3,6 +3,19 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YGXXV5XF41"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-YGXXV5XF41', {
+            'debug_mode': true
+        });
+    </script>
+    
     <script>
         function trackEvent(parameters) {
             if (window.NlogAppInterface) {
@@ -19,6 +32,11 @@
                 window.webkit.messageHandlers.nlog.postMessage(message);
             } else {
                 console.log("Cannot find native API.");
+                console.log("Send GA4 Event");
+                gtag('event', 'click_webview', {
+                    'item_id': 'BTN-WEB-01',
+                    'source':'WEB-BROWSER',
+                });
             }
         }
 
@@ -30,18 +48,6 @@
                 'current_timestampe': Date.now()
             })
         }
-    </script>
-    
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YGXXV5XF41"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-YGXXV5XF41', {
-            'debug_mode': true
-        });
     </script>
 </head>
 
